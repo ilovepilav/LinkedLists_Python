@@ -1,8 +1,9 @@
-Linked list data structure for python.
+Singly and Doubly Linked Lists for python.
 
 Methods
 
 - traverse
+- print
 - append
 - prepend
 - insert
