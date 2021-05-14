@@ -86,9 +86,7 @@ class SinglyLinkedList:
             print('Index out of range')
             return
         if(index == 0):
-            self.head = self.head.next
-            self.length -= 1
-            return
+            return self.shift()
         n = self.head
         for i in range(self.length):
             if(i+1 == index):
@@ -119,9 +117,19 @@ class SinglyLinkedList:
         prev.next = None
         while curr is not None:
             next = curr.next
-
             curr.next = prev
-
             prev = curr
             curr = next
         self.head = prev
+
+    def shift(self):
+        node = self.head.next
+        self.head.next = None
+        node.prev = None
+        self.head = node
+        self.length -= 1
+
+    def pop(self):
+        node = self.traverse(self.length-2)
+        node.next = None
+        self.length -= 1

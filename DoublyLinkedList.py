@@ -7,6 +7,14 @@ class DoublyLinkedList:
         self.tail = None
         self.length = 0
 
+    def get(self, item):
+        n = self.head
+        while n is not None:
+            if(n.item == item):
+                return n
+            n = n.next
+        return None
+
     def traverse(self, index):
         node = self.head
         for i in range(self.length):
@@ -117,3 +125,52 @@ class DoublyLinkedList:
                 return
             follower = follower.next
             leader = leader.next
+
+    def remove(self, x):
+        current = self.get(x)
+        if current is None:
+            return print('Item is not found.')
+        if self.head.item == current.item:
+            return self.shift()
+        if self.tail.item == current.item:
+            return self.pop()
+        follower = current.prev
+        leader = current.next
+        follower.next = leader
+        leader.prev = follower
+        current.prev = None
+        current.next = None
+        self.length -= 1
+
+    def reverse(self):
+        if(self.head is None):
+            return print('List has 0 node.')
+        if(self.head.next is None):
+            return
+        prev = self.head
+        curr = prev.next
+        tail = self.tail
+        while curr is not None:
+            next = curr.next
+            curr.next = prev
+            curr.prev = next
+            prev = curr
+            curr = next
+        self.head.next = None
+        tail.prev = None
+        self.tail = self.head
+        self.head = tail
+
+    def shift(self):
+        node = self.head.next
+        self.head.next = None
+        node.prev = None
+        self.head = node
+        self.length -= 1
+
+    def pop(self):
+        node = self.tail.prev
+        self.tail.prev = None
+        node.next = None
+        self.tail = node
+        self.length -= 1

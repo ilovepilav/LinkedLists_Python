@@ -2,8 +2,11 @@ Singly and Doubly Linked Lists for python.
 
 Methods
 
+- get
 - traverse
 - print
+- pop
+- push
 - append
 - prepend
 - insert
