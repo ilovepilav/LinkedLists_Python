@@ -100,19 +100,9 @@ class DoublyLinkedList:
             print('Index out of range.')
             return
         if(index == 0):
-            new_head = self.head.next
-            self.head.next.prev = None
-            self.head.next = None
-            self.head = new_head
-            self.length -= 1
-            return
+            return self.shift()
         if(index == self.length-1):
-            new_tail = self.tail.prev
-            self.tail.prev = None
-            new_tail.next = None
-            self.tail = new_tail
-            self.length -= 1
-            return
+            return self.pop()
         follower = self.head
         leader = follower.next.next
         for i in range(1, self.length - 1):
